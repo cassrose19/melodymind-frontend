@@ -18,7 +18,7 @@ async function searchMusic() {
       console.log("Response data:", data);
       
       // Checks if the returned data is an array of results (songs)
-      if (Array.isArray(data)) {
+      if (Array.isArray(data) && data.length > 0) {
         responseContainer.innerHTML = "";
         // Loops through each song result.
         // For each song, a div is built containing the song
@@ -38,6 +38,7 @@ async function searchMusic() {
         });
       // If backend doesn't return a list, show a message instead
       } else {
+        console.warn("No valid results:", data);
         responseContainer.innerHTML = "No results found.";
       }
     } catch (error) {
