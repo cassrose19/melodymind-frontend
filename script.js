@@ -4,19 +4,25 @@ async function searchMusic() {
     responseContainer.innerHTML = "Loading...";
   
     try {
+      // Sends POST request to the backend API running on port 5051
       const response = await fetch("http://localhost:5051/api/search", {
+        // Sends user's prompt as a JSON body
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ prompt })
       });
-  
+      // Waits for and parses the JSON response from the backend
       const data = await response.json();
       console.log("Response data:", data);
-  
+      
+      // Checks if the returned data is an array of results (songs)
       if (Array.isArray(data)) {
         responseContainer.innerHTML = "";
+        // Loops through each song result.
+        // For each song, a div is built containing the song
+        // title, artist, match score, and a spotify link.
         data.forEach(item => {
           const div = document.createElement("div");
           div.innerHTML = `
@@ -30,6 +36,7 @@ async function searchMusic() {
           `;
           responseContainer.appendChild(div);
         });
+      // If backend doesn't return a list, show a message instead
       } else {
         responseContainer.innerHTML = "No results found.";
       }
