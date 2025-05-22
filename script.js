@@ -5,7 +5,7 @@ async function searchMusic() {
   
     try {
       // Sends POST request to the backend API running on port 5051
-      const response = await fetch("http://localhost:5051/api/search", {
+      const response = await fetch("http://localhost:5051/search", {
         // Sends user's prompt as a JSON body
         method: "POST",
         headers: {
