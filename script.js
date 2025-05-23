@@ -29,7 +29,7 @@ async function searchMusic() {
             <div class="bg-white p-4 rounded-lg shadow-md">
               <h3 class="text-xl font-semibold text-blue-600">${item.title}</h3>
               <p class="text-gray-700">by <em>${item.artist}</em></p>
-              <p class="text-sm text-gray-500">Match score: ${item.match_score.toFixed(2)}</p>
+              <p class="text-sm text-gray-500">Match score: ${typeof item.match_score === "number" ? item.match_score.toFixed(2) : "N/A"}</p>
               <p class="text-sm text-gray-600">${item.reason}</p>
               <a class="text-blue-500 underline mt-2 inline-block" href="${item.spotify_url}" target="_blank">Listen on Spotify</a>
             </div>
